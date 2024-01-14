@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random NATO Alphabet Printer</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      font-size: 3em;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Å', 'Ä', 'Ö',];
+
+    function printRandomLetter() {
+      const randomIndex = Math.floor(Math.random() * letters.length);
+      const randomLetter = letters[randomIndex];
+      
+      document.body.textContent = randomLetter;
+      setTimeout(() => {
+        document.body.textContent = getNatoWord(randomLetter);
+        setTimeout(() => {
+          // Recursively call the function to print a new random letter
+          printRandomLetter();
+        }, 2000);
+      }, 2000);
+    }
+
+    function getNatoWord(letter) {
+      const natoAlphabet = {
+        'A': 'Aarne', 'B': 'Bertta', 'C': 'Celsius', 'D': 'Daavid', 'E': 'Eemeli',
+        'F': 'Faarao', 'G': 'Gideon', 'H': 'Heikki', 'I': 'Iivari', 'J': 'Jussi',
+        'K': 'Kalle', 'L': 'Lauri', 'M': 'Matti', 'N': 'Niilo', 'O': 'Otto',
+        'P': 'Paavo', 'Q': 'Kuu', 'R': 'Risto', 'S': 'Sakari', 'T': 'Tyyne',
+        'U': 'Urho', 'V': 'Vihtori', 'W': 'Wiski', 'X': 'Äksä', 'Y': 'Yrjö', 'Z': 'Tseta',
+        'Å': 'Åke', 'Ä': 'Äiti', 'Ö': 'Öljy',
+      };
+
+      return natoAlphabet[letter];
+    }
+
+    // Start the process with a random letter
+    printRandomLetter();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random NATO Alphabet Printer</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      font-size: 3em;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Å', 'Ä', 'Ö'];
+
+    function printRandomLetter() {
+      const randomIndex = Math.floor(Math.random() * letters.length);
+      const randomLetter = letters[randomIndex];
+      
+      document.body.textContent = randomLetter;
+      setTimeout(() => {
+        document.body.textContent = getNatoWord(randomLetter);
+        setTimeout(() => {
+          // Recursively call the function to print a new random letter
+          printRandomLetter();
+        }, 2000);
+      }, 2000);
+    }
+
+    function getNatoWord(letter) {
+      const natoAlphabet = {
+        'A': 'Alpha', 'B': 'Bravo', 'C': 'Charlie', 'D': 'Delta', 'E': 'Echo',
+        'F': 'Foxtrot', 'G': 'Golf', 'H': 'Hotel', 'I': 'India', 'J': 'Juliett',
+        'K': 'Kilo', 'L': 'Lima', 'M': 'Mike', 'N': 'November', 'O': 'Oscar',
+        'P': 'Papa', 'Q': 'Quebec', 'R': 'Romeo', 'S': 'Sierra', 'T': 'Tango',
+        'U': 'Uniform', 'V': 'Victor', 'W': 'Whiskey', 'X': 'X-ray', 'Y': 'Yankee', 'Z': 'Zulu',
+        'Å': 'Alpha-Alpha', 'Ä': 'Alpha-Echo', 'Ö': 'Oscar-Echo'
+      };
+
+      return natoAlphabet[letter];
+    }
+
+    // Start the process with a random letter
+    printRandomLetter();
+  </script>
+</body>
+</html>
+
