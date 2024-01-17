@@ -2,8 +2,7 @@
 
 Hosting small utility websites for people to use. At the moment these are:
 
-[[natoalphabet.html]]
-- Website to practise the nato alphabet in english
+[Website to practise the nato alphabet in english](https://villevapa.github.io/natoalphabet.html)
 
-[[natoaakkoset.html]]
-- Website to practise the nato alphabet equivalent in finnish
+
+[Website to practise the nato alphabet equivalent in finnish](https://villevapa.github.io/natoaakkoset.html)
