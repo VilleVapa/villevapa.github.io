@@ -27,22 +27,26 @@
 
 <script>
     const morseCodeMap = {
-        'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
-        'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
-        'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..',
-        '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----'
+        'A': 'A_morse_code.ogg', 'B': 'B_morse_code.ogg', 'C': 'C_morse_code.ogg', 'D': 'D_morse_code.ogg',
+        'E': 'E_morse_code.ogg', 'F': 'F_morse_code.ogg', 'G': 'G_morse_code.ogg', 'H': 'H_morse_code.ogg',
+        'I': 'I_morse_code.ogg', 'J': 'J_morse_code.ogg', 'K': 'K_morse_code.ogg', 'L': 'L_morse_code.ogg',
+        'M': 'M_morse_code.ogg', 'N': 'N_morse_code.ogg', 'O': 'O_morse_code.ogg', 'P': 'P_morse_code.ogg',
+        'Q': 'Q_morse_code.ogg', 'R': 'R_morse_code.ogg', 'S': 'S_morse_code.ogg', 'T': 'T_morse_code.ogg',
+        'U': 'U_morse_code.ogg', 'V': 'V_morse_code.ogg', 'W': 'W_morse_code.ogg', 'X': 'X_morse_code.ogg',
+        'Y': 'Y_morse_code.ogg', 'Z': 'Z_morse_code.ogg',
+        'Å': '%C3%85_morse_code.oga', 'Ä': '%C3%84%2C_%C3%86%2C_%C4%84_morse_code.oga',
+        'Ö': '%C3%96%2C_%C3%98%2C_%C3%93_Morse_Code.oga'
     };
 
     function playMorse() {
-        const textToPlay = 'HELLO';  // Change this to the desired text
+        const textToPlay = 'ABC';  // Change this to the desired text
         const delay = 1000;  // Delay in milliseconds
 
         const resultElement = document.getElementById('result');
         resultElement.innerHTML = '';
 
         function playMorseCharacter(char) {
-            const audio = new Audio();
-            audio.src = `https://www.morseresource.com/morse/${morseCodeMap[char].replaceAll('.', 'dot').replaceAll('-', 'dash')}.mp3`;
+            const audio = new Audio(`https://upload.wikimedia.org/wikipedia/commons/${morseCodeMap[char]}`);
             audio.play();
         }
 
@@ -62,6 +66,22 @@
         }
 
         playNextCharacter(0);
+        checkMissingLetters();
+    }
+
+    function checkMissingLetters() {
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ';
+        const missingLetters = [];
+
+        for (const letter of alphabet) {
+            if (!morseCodeMap[letter]) {
+                missingLetters.push(letter);
+            }
+        }
+
+        if (missingLetters.length > 0) {
+            alert(`Missing Morse code for the following letters: ${missingLetters.join(', ')}`);
+        }
     }
 </script>
 
