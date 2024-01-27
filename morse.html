@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Morse Code Player</h1>
+<p id="result"></p>
+<button onclick="playMorse()">Play Morse Code</button>
+
+<script>
+    const morseCodeMap = {
+        'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+        'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+        'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..',
+        '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----'
+    };
+
+    function playMorse() {
+        const textToPlay = 'HELLO';  // Change this to the desired text
+        const delay = 1000;  // Delay in milliseconds
+
+        const resultElement = document.getElementById('result');
+        resultElement.innerHTML = '';
+
+        function playMorseCharacter(char) {
+            const audio = new Audio();
+            audio.src = `https://www.morseresource.com/morse/${morseCodeMap[char].replaceAll('.', 'dot').replaceAll('-', 'dash')}.mp3`;
+            audio.play();
+        }
+
+        function displayCharacter(char) {
+            resultElement.innerHTML += char;
+        }
+
+        function playNextCharacter(index) {
+            if (index < textToPlay.length) {
+                const char = textToPlay[index];
+                playMorseCharacter(char);
+                setTimeout(() => {
+                    displayCharacter(char);
+                    playNextCharacter(index + 1);
+                }, delay);
+            }
+        }
+
+        playNextCharacter(0);
+    }
+</script>
+
+</body>
+</html>
